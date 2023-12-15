@@ -1,5 +1,9 @@
 version: 2.1
 
+docker:
+  - image: circleci/node:latest
+  - commands:
+      - echo "Hello World from Docker!"
 jobs:
   build:
     steps:
