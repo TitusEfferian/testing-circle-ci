@@ -15,6 +15,10 @@ jobs:
       - run:
           command: node -p "console.log(process.env.MY_VALUE)"
           name: trying to read the env value
+      - run:
+          name: echo
+          command: |
+            echo "${MYN_NAME}"
           
 
   # Job one with a unique name
