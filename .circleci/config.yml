@@ -11,7 +11,7 @@ jobs:
           command: node -p "console.log('hello world from circleCI');"
           name: running node js script
       - run:
-          command: node -p "console.log(process.env.MY_VALUE)"
+          command: node -p "console.log(process.env.MY_NAME)"
           name: trying to read the env value
       - run:
           name: echo
