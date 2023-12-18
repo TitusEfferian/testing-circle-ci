@@ -1,11 +1,25 @@
 version: 2.1
 
-docker:
-  - image: circleci/node:latest
-  - commands:
-      - echo "Hello World from Docker!"
 jobs:
-  build:
+  my_job:
+    docker:
+      - image: cimg/base:stable
     steps:
-      - run: echo "Hello World!"
+      - checkout
+      - run:
+          name: Run my tasks
+          command: |
+            echo "Running scheduled tasks..."
 
+workflows:
+  version: 2
+  hourly-schedule:
+    triggers:
+      - schedule:
+          cron: "50 * * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - my_job
