@@ -12,7 +12,6 @@ jobs:
             echo "Running scheduled tasks..."
 
 workflows:
-  version: 2
   hourly-schedule:
     triggers:
       - schedule:
