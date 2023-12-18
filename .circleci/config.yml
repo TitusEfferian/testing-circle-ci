@@ -18,7 +18,7 @@ jobs:
       - run:
           name: echo
           command: |
-            echo "${MYN_NAME}"
+            echo "${MY_NAME}"
           
 
   # Job one with a unique name
