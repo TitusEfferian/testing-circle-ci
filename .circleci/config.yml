@@ -1,7 +1,13 @@
 # CircleCI configuration file
 version: 2.1
 
+orbs:
+  node: circleci/node@5.0.2
 jobs:
+  hello_from_node:
+    executor: node/default
+    steps:
+      - run: node -p "console.log('hello world from circleCI');"
   # Job one with a unique name
   say_hello:
     docker:
@@ -14,7 +20,6 @@ jobs:
      - image: cimg/base:2022.05
     steps:
       - run: echo "Say goodbye to YAML!"
-
 workflows:
   # Name of workflow
   hello_and_goodbye:
@@ -22,3 +27,4 @@ workflows:
     jobs:
       - say_hello
       - say_goodbye
+      - hello_from_node
