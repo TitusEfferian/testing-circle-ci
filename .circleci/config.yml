@@ -7,7 +7,10 @@ jobs:
   hello_from_node:
     executor: node/default
     steps:
-      - run: node -p "console.log('hello world from circleCI');"
+      - run: 
+          command: node -p "console.log('hello world from circleCI');"
+          name: running node js script
+
   # Job one with a unique name
   say_hello:
     docker:
