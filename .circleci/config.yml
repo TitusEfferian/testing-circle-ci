@@ -1,24 +1,41 @@
+# CircleCI configuration file
 version: 2.1
 
+orbs:
+  node: circleci/node@5.0.2
 jobs:
-  my_job:
-    docker:
-      - image: cimg/base:stable
+  hello_from_node:
+    executor: node/default
     steps:
-      - checkout
+      - run: 
+          command: node -p "console.log('hello world from circleCI');"
+          name: running node js script
       - run:
-          name: Run my tasks
+          command: node -p "console.log(process.env.MY_NAME)"
+          name: trying to read the env value
+      - run:
+          name: echo
           command: |
-            echo "Running scheduled tasks..."
+            echo "${MY_NAME}"
+          
 
+  # Job one with a unique name
+  say_hello:
+    docker:
+     - image: cimg/base:2022.05
+    steps:
+      - run: echo "Say hello to YAML!"
+  # Job two with a unique name
+  say_goodbye:
+    docker:
+     - image: cimg/base:2022.05
+    steps:
+      - run: echo "Say goodbye to YAML!"
 workflows:
-  hourly-schedule:
-    triggers:
-      - schedule:
-          cron: "50 * * * *"
-          filters:
-            branches:
-              only:
-                - master
+  # Name of workflow
+  hello_and_goodbye:
+    # List of jobs that will run
     jobs:
-      - my_job
+      - say_hello
+      - say_goodbye
+      - hello_from_node
