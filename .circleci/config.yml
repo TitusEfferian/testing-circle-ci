@@ -1,10 +1,15 @@
 version: 2.1
+
+orbs:
+  node: circleci/node@5.0.2
+
 jobs:
   build:
-    docker:
-      - image: circleci/node:latest # Use the latest Node.js image
+    executor:
+      name: node/default
+      tag: '14.17' # You can specify the Node.js version here
     steps:
       - checkout
       - run:
-          name: Run Node.js Script
           command: node main.js
+          name: running script
