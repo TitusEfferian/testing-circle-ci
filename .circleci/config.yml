@@ -5,9 +5,9 @@ jobs:
       - image: circleci/node:latest # Use the latest Node.js image
     steps:
       - checkout
-      - run:
-          name: Install Dependencies
-          command: npm install
+      # - run:
+      #     name: Install Dependencies
+      #     command: npm install
       - run:
           name: Run Node.js Script
-          command: node your-script.js # Replace with your script file
+          command: node main.js
