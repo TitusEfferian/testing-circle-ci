@@ -1,11 +1,13 @@
 version: 2.1
-
-docker:
-  - image: circleci/node:latest
-  - commands:
-      - echo "Hello World from Docker!"
 jobs:
   build:
+    docker:
+      - image: circleci/node:latest # Use the latest Node.js image
     steps:
-      - run: echo "Hello World!"
-
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Run Node.js Script
+          command: node your-script.js # Replace with your script file
